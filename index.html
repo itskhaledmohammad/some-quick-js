@@ -32,6 +32,22 @@
         <p id="average"></p>
         <p id="reverse-order"></p>
       </div>
+
+      <div id="magic">
+        <textarea
+          name="magic-string"
+          id="magic-string"
+          cols="30"
+          rows="10"
+        ></textarea>
+        <button onclick="ClearIt()">Clear It</button>
+        <button onclick="Capitalize()">Capitalize</button>
+        <button onclick="Sort()">Sort</button>
+        <button onclick="Reverse()">Reverse</button>
+        <button onclick="Strip()">Strip Blank</button>
+        <button onclick="AddNumbers()">Add Numbers</button>
+        <button onclick="Shuffle()">Shuffle</button>
+      </div>
     </div>
     <script>
       // KG TO POUNDS
@@ -78,7 +94,7 @@
           "Reverse Order: " + reverse;
       }
 
-      // Random Generated
+      // Random Quotes
       var quotes = [
         "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et dolore",
         "beatae voluptatem eum tenetur facilis ex omnis iste debitis. Libero",
@@ -89,6 +105,52 @@
       function generateQuote() {
         randIndx = Math.floor(Math.random() * quotes.length);
         document.querySelector("blockquote").innerHTML = quotes[randIndx];
+      }
+
+      // Magic
+      var txtbx = document.querySelector("#magic-string");
+      function ClearIt() {
+        txtbx.value = "";
+      }
+      function Capitalize() {
+        txtbx.value = txtbx.value.toUpperCase();
+      }
+      function Sort() {
+        txtbx.value = txtbx.value
+          .split("\n")
+          .sort()
+          .join("\n");
+      }
+      function Reverse() {
+        txtbx.value = txtbx.value
+          .split("\n")
+          .reverse()
+          .join("\n");
+      }
+      function Strip() {
+        txtbx.value = document
+          .querySelector("#magic-string")
+          .value.split("\n")
+          .filter(e => e.trim() != "")
+          .join("\n")
+          .trim();
+      }
+      function AddNumbers() {
+        txtbx.value = txtbx.value
+          .split("\n")
+          .map((elem, indx) => indx + 1 + ". " + elem)
+          .join("\n");
+      }
+      function Shuffle() {
+        currArr = txtbx.value.split("\n");
+        var newArr = [];
+        for (i = currArr.length - 1; i > 0; i--) {
+          myval = currArr[i];
+          indx = Math.floor(Math.random() * i);
+          currArr[i] = currArr[indx];
+          currArr[indx] = myval;
+        }
+        txtbx.value = currArr.join("\n");
       }
     </script>
   </body>
