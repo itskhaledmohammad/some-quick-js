@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Assignment 2</title>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="random-quote">
+        <h1>RANDOM QUOTES!</h1>
+        <blockquote></blockquote>
+      </div>
+      <div id="kg-to-pound">
+        <h1>CONVERTER!</h1>
+        <input type="text" name="inpt" id="inpt" value="0" />
+        <select name="conv" id="conv">
+          <!-- kg to pound -->
+          <option value="1">KG TO POUNDS</option>
+          <!-- pound to kg -->
+          <option value="2">POUNDS TO KG</option>
+        </select>
+        <p id="oupt"></p>
+      </div>
+      <div id="number">
+        <h1>NUMBER LIST</h1>
+        <input type="text" name="number-list" id="number-list" value="0,0,0" />
+        <p id="max"></p>
+        <p id="min"></p>
+        <p id="sum"></p>
+        <p id="average"></p>
+        <p id="reverse-order"></p>
+      </div>
+    </div>
+    <script>
+      // KG TO POUNDS
+      converterElemInput = document.querySelector("#kg-to-pound input");
+      document.querySelector("#conv").addEventListener("change", converter);
+
+      // Listeners
+      converterElemInput.addEventListener("keyup", converter);
+      window.addEventListener("load", () => {
+        funWithNumbers();
+        generateQuote();
+        converter();
+      });
+      document
+        .querySelector("#number-list")
+        .addEventListener("keyup", funWithNumbers);
+      function converter() {
+        var valc = converterElemInput.value;
+        convMode = document.querySelector("#conv").value;
+        if (convMode == 1) {
+          output = valc * 2.20462;
+        } else {
+          output = valc * 0.453592;
+        }
+        document.querySelector("#oupt").innerHTML =
+          output + (convMode == 1 ? " pound(s)" : " kg(s)");
+      }
+
+      // NUMBER LIST
+      function funWithNumbers() {
+        numbers = document.querySelector("#number-list").value;
+        arr = eval("[" + numbers + "]");
+        max = Math.max(...arr);
+        min = Math.min(...arr);
+        sum = arr.reduce((acc, curr) => acc + curr);
+        average = sum / arr.length;
+        reverse = arr.reverse();
+
+        document.querySelector("#max").innerHTML = "Max: " + max;
+        document.querySelector("#min").innerHTML = "Min: " + min;
+        document.querySelector("#sum").innerHTML = "Sum:" + sum;
+        document.querySelector("#average").innerHTML = "Average:" + average;
+        document.querySelector("#reverse-order").innerHTML =
+          "Reverse Order: " + reverse;
+      }
+
+      // Random Generated
+      var quotes = [
+        "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et dolore",
+        "beatae voluptatem eum tenetur facilis ex omnis iste debitis. Libero",
+        "eos voluptatem totam molestias sapiente. Libero laboriosam atque",
+        "doloremque minima."
+      ];
+
+      function generateQuote() {
+        randIndx = Math.floor(Math.random() * quotes.length);
+        document.querySelector("blockquote").innerHTML = quotes[randIndx];
+      }
+    </script>
+  </body>
+</html>
