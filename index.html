@@ -130,6 +130,7 @@
         align-items: center;
         justify-content: center;
         width: 100%;
+        margin-bottom: 50px;
       }
       #colors .color {
         height: 40px;
@@ -142,39 +143,44 @@
         transform: scale(1.1);
         transition: all ease 0.5s;
       }
+
+      #mid-sec {
+        display: flex;
+      }
+      #mid-sec > div {
+        margin: 20px;
+      }
     </style>
   </head>
   <body>
     <div id="wrapper">
-      <div id="random-quote" class="box">
-        <!-- <h1>RANDOM QUOTES!</h1> -->
-        <blockquote></blockquote>
-      </div>
-      <div id="colors">
-        <div class="color purple"></div>
-        <div class="color green"></div>
-        <div class="color orange"></div>
-        <div class="color blue"></div>
-      </div>
-      <div id="kg-to-pound" class="box">
-        <h1>CONVERTER!</h1>
-        <input type="text" name="inpt" id="inpt" value="0" />
-        <select name="conv" id="conv">
-          <!-- kg to pound -->
-          <option value="1">KG TO POUNDS</option>
-          <!-- pound to kg -->
-          <option value="2">POUNDS TO KG</option>
-        </select>
-        <p id="oupt"></p>
-      </div>
-      <div id="number" class="box">
-        <h1>NUMBER LIST</h1>
-        <input type="text" name="number-list" id="number-list" value="0,0,0" />
-        <p id="max"></p>
-        <p id="min"></p>
-        <p id="sum"></p>
-        <p id="average"></p>
-        <p id="reverse-order"></p>
+      <div id="mid-sec">
+        <div id="kg-to-pound" class="box">
+          <h1>CONVERTER!</h1>
+          <input type="text" name="inpt" id="inpt" value="0" />
+          <select name="conv" id="conv">
+            <!-- kg to pound -->
+            <option value="1">KG TO POUNDS</option>
+            <!-- pound to kg -->
+            <option value="2">POUNDS TO KG</option>
+          </select>
+          <p id="oupt"></p>
+        </div>
+
+        <div id="number" class="box">
+          <h1>NUMBER LIST</h1>
+          <input
+            type="text"
+            name="number-list"
+            id="number-list"
+            value="0,0,0"
+          />
+          <p id="max"></p>
+          <p id="min"></p>
+          <p id="sum"></p>
+          <p id="average"></p>
+          <p id="reverse-order"></p>
+        </div>
       </div>
 
       <div id="magic" class="box">
@@ -193,6 +199,16 @@
           <button onclick="AddNumbers()">Add Numbers</button>
           <button onclick="Shuffle()">Shuffle</button>
         </div>
+      </div>
+      <div id="random-quote" class="box">
+        <!-- <h1>RANDOM QUOTES!</h1> -->
+        <blockquote></blockquote>
+      </div>
+      <div id="colors">
+        <div class="color purple"></div>
+        <div class="color green"></div>
+        <div class="color orange"></div>
+        <div class="color blue"></div>
       </div>
     </div>
     <script>
