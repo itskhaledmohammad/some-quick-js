@@ -5,14 +5,156 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Assignment 2</title>
+    <script src="./particles.min.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Anton|Lobster|Roboto&display=swap");
+      * {
+        padding: 0;
+        margin: 0;
+        text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+      }
+      #wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: auto;
+        background: #d4f5f5;
+        font-family: "Roboto";
+      }
+      .box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin: 30px 0;
+        padding: 30px;
+        border: 2px solid #50858b;
+        background: #5497a7;
+        color: white;
+        transition: all ease 0.5s;
+      }
+      #random-quote {
+        width: 800px;
+        height: 250px;
+      }
+      #random-quote blockquote {
+        font-family: "Lobster";
+        font-size: 30px;
+      }
+      #random-quote blockquote #quote-mark {
+        font-family: "Anton";
+        display: inline;
+      }
+      #random-quote blockquote #author {
+        font-family: "Anton";
+        font-size: 18px;
+        color: rgb(238, 238, 238);
+        text-align: right;
+        margin-top: 15px;
+      }
+      input {
+        font-size: 20px;
+        padding: 10px;
+        margin: 10px;
+      }
+      select {
+        padding: 15px;
+        font-size: 15px;
+        background: #d4f5f5;
+        border: none;
+        margin-bottom: 10px;
+      }
+      #oupt {
+        font-size: 30px;
+      }
+      #number p {
+        font-size: 20px;
+        margin: 5px 0px;
+      }
+      #magic {
+        width: 450px;
+      }
+      #magic textarea {
+        width: 90%;
+        height: 300px;
+        font-size: 25px;
+      }
+      #magic #buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      #magic #buttons button {
+        padding: 10px;
+        font-size: 15px;
+        margin: 10px;
+        width: 120px;
+        height: 40px;
+        background: #59c9a5;
+        border: none;
+        color: white;
+        border-radius: 2px;
+        border: 1px solid #42997d;
+      }
+      .purple {
+        background: #51355a;
+        border: 2px solid#3d2844;
+        color: white;
+        transition: all ease 0.5s;
+      }
+      .green {
+        background: #305252;
+        border: 2px solid #284444;
+        color: white;
+        transition: all ease 0.5s;
+      }
+      .orange {
+        background: #daa49a;
+        border: 2px solid #c3958d;
+        color: black;
+        transition: all ease 0.5s;
+      }
+      .blue {
+        background: #53a2be;
+        border: 2px solid rgb(64, 123, 144);
+        color: white;
+        transition: all ease 0.5s;
+      }
+
+      #colors {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+      }
+      #colors .color {
+        height: 40px;
+        width: 40px;
+        margin: 0 10px;
+        border-radius: 5px;
+        transition: all ease 0.5s;
+      }
+      #colors .color:hover {
+        transform: scale(1.1);
+        transition: all ease 0.5s;
+      }
+    </style>
   </head>
   <body>
     <div id="wrapper">
-      <div id="random-quote">
-        <h1>RANDOM QUOTES!</h1>
+      <div id="random-quote" class="box">
+        <!-- <h1>RANDOM QUOTES!</h1> -->
         <blockquote></blockquote>
       </div>
-      <div id="kg-to-pound">
+      <div id="colors">
+        <div class="color purple"></div>
+        <div class="color green"></div>
+        <div class="color orange"></div>
+        <div class="color blue"></div>
+      </div>
+      <div id="kg-to-pound" class="box">
         <h1>CONVERTER!</h1>
         <input type="text" name="inpt" id="inpt" value="0" />
         <select name="conv" id="conv">
@@ -23,7 +165,7 @@
         </select>
         <p id="oupt"></p>
       </div>
-      <div id="number">
+      <div id="number" class="box">
         <h1>NUMBER LIST</h1>
         <input type="text" name="number-list" id="number-list" value="0,0,0" />
         <p id="max"></p>
@@ -33,20 +175,22 @@
         <p id="reverse-order"></p>
       </div>
 
-      <div id="magic">
+      <div id="magic" class="box">
         <textarea
           name="magic-string"
           id="magic-string"
           cols="30"
           rows="10"
         ></textarea>
-        <button onclick="ClearIt()">Clear It</button>
-        <button onclick="Capitalize()">Capitalize</button>
-        <button onclick="Sort()">Sort</button>
-        <button onclick="Reverse()">Reverse</button>
-        <button onclick="Strip()">Strip Blank</button>
-        <button onclick="AddNumbers()">Add Numbers</button>
-        <button onclick="Shuffle()">Shuffle</button>
+        <div id="buttons">
+          <button onclick="ClearIt()">Clear It</button>
+          <button onclick="Capitalize()">Capitalize</button>
+          <button onclick="Sort()">Sort</button>
+          <button onclick="Reverse()">Reverse</button>
+          <button onclick="Strip()">Strip Blank</button>
+          <button onclick="AddNumbers()">Add Numbers</button>
+          <button onclick="Shuffle()">Shuffle</button>
+        </div>
       </div>
     </div>
     <script>
@@ -96,15 +240,29 @@
 
       // Random Quotes
       var quotes = [
-        "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et dolore",
-        "beatae voluptatem eum tenetur facilis ex omnis iste debitis. Libero",
-        "eos voluptatem totam molestias sapiente. Libero laboriosam atque",
-        "doloremque minima."
+        [
+          "Wear what you wish and eat what you wish, as long as you avoid two practices: extravagance and haughtiness.",
+          "Qatādah(Ibn Abī Al-Dunyā, Al-Tawāḍuʿ Wa Al-Khumūl ḥadīth 90.)"
+        ],
+        [
+          "Wear what you wish and eat what you wish, as long as you avoid two practices: extravagance and haughtiness.",
+          " ʿAbdullāh b. ʿAbbās(Ibn Abī Shaybah, Al-Muṣannaf ḥadīth 26601.)"
+        ],
+        [
+          "If you want your ṣalāh to benefit you, say (to yourself): perhaps I will never pray another (my life will end before the next prayer).",
+          "Bakr b. ʿAbdillāh Al-Muzanī(Ibn Abī Al-Dunyā, Qaṣr Al-ʾAmal article 104.)"
+        ]
       ];
 
       function generateQuote() {
         randIndx = Math.floor(Math.random() * quotes.length);
-        document.querySelector("blockquote").innerHTML = quotes[randIndx];
+        document.querySelector("blockquote").innerHTML =
+          "<p><span id='quote-mark'>&#8220;</span>" +
+          quotes[randIndx][0] +
+          "</p>" +
+          "<p id='author'>- " +
+          quotes[randIndx][1] +
+          "</p>";
       }
 
       // Magic
@@ -152,6 +310,14 @@
         }
         txtbx.value = currArr.join("\n");
       }
+
+      document.querySelectorAll(".color").forEach(e => {
+        e.addEventListener("click", e => {
+          console.log(e);
+          document.querySelector("#random-quote").className =
+            "box " + e.target.classList[1];
+        });
+      });
     </script>
   </body>
 </html>
